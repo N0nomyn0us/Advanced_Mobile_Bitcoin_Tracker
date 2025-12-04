@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#111827"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="24dp"
     tools:context=".MainActivity">
@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -47,7 +47,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         app:cardBackgroundColor="#374151"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp">
@@ -88,7 +88,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         app:cardBackgroundColor="#374151"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp">
@@ -129,6 +129,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         app:cardBackgroundColor="#374151"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp">
@@ -166,25 +167,67 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- START: Historical Chart Section -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="#374151"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7-Day Trend (USD)"
+                android:textColor="#9CA3AF"
+                android:textSize="14sp" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/price_chart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <!-- END: Historical Chart Section -->
+
+
     <!-- Footer Section -->
     <Button
         android:id="@+id/refresh_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#FBBF24"
         android:text="Refresh"
         android:textColor="#111827"
         android:textStyle="bold" />
 
+    <!-- Shake Instruction -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="(Or shake phone to refresh)"
+        android:textColor="#4B5563"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
     <TextView
         android:id="@+id/last_updated_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Last updated: Never"
         android:textColor="#6B7280"
         android:textSize="12sp" />
 
 </LinearLayout>
-
