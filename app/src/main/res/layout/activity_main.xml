@@ -1,233 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#111827"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="24dp"
-    tools:context=".MainActivity">
+    android:background="#111827">
 
-    <!-- Header Section -->
-    <LinearLayout
+    <!-- This "Container" is where your Home/Search/Settings pages will appear -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/nav_view"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
+
+    <!-- The Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_alignParentBottom="true"
+        android:background="#1F2937"
+        app:itemIconTint="#FBBF24"
+        app:itemTextColor="#FBBF24"
+        app:menu="@menu/bottom_nav_menu" />
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:src="@android:drawable/ic_menu_info_details"
-            app:tint="#FBBF24" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Bitcoin Tracker"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <ProgressBar
-            android:id="@+id/loading_spinner"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:indeterminateTint="#FBBF24"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-    </LinearLayout>
-
-    <!-- Price Display Cards -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardBackgroundColor="#374151"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="US Dollar"
-                android:textColor="#9CA3AF"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/price_usd_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="--.---"
-                android:textColor="@android:color/white"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="USD"
-                android:textColor="#9CA3AF"
-                android:textSize="18sp" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardBackgroundColor="#374151"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="British Pound"
-                android:textColor="#9CA3AF"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/price_gbp_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="--.---"
-                android:textColor="@android:color/white"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="GBP"
-                android:textColor="#9CA3AF"
-                android:textSize="18sp" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardBackgroundColor="#374151"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Euro"
-                android:textColor="#9CA3AF"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/price_eur_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="--.---"
-                android:textColor="@android:color/white"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="EUR"
-                android:textColor="#9CA3AF"
-                android:textSize="18sp" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- START: Historical Chart Section -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:cardBackgroundColor="#374151"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="0dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="7-Day Trend (USD)"
-                android:textColor="#9CA3AF"
-                android:textSize="14sp" />
-
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/price_chart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"/>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <!-- END: Historical Chart Section -->
-
-
-    <!-- Footer Section -->
-    <Button
-        android:id="@+id/refresh_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FBBF24"
-        android:text="Refresh"
-        android:textColor="#111827"
-        android:textStyle="bold" />
-
-    <!-- Shake Instruction -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="(Or shake phone to refresh)"
-        android:textColor="#4B5563"
-        android:textSize="12sp"
-        android:textStyle="italic"/>
-
-    <TextView
-        android:id="@+id/last_updated_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Last updated: Never"
-        android:textColor="#6B7280"
-        android:textSize="12sp" />
-
-</LinearLayout>
+</RelativeLayout>

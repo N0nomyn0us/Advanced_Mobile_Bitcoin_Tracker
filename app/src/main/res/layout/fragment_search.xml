@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#111827"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Crypto"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- AutoCompleteTextView -->
+    <AutoCompleteTextView
+        android:id="@+id/search_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start typing (e.g. bit...)"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#6B7280"
+        android:backgroundTint="#FBBF24"
+        android:padding="12dp"
+        android:completionThreshold="2"
+        android:inputType="text"
+        android:imeOptions="actionSearch"/>
+
+    <Button
+        android:id="@+id/search_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check Price"
+        android:backgroundTint="#FBBF24"
+        android:textColor="#111827"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Container for results to keep them centered -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="32dp">
+
+        <ProgressBar
+            android:id="@+id/search_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="#FBBF24"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/search_result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..."
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>
