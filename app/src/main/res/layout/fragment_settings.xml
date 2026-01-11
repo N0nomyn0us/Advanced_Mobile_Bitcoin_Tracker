@@ -105,12 +105,11 @@
             android:textStyle="bold"
             android:layout_marginBottom="16dp"/>
 
-        <!-- Biometric Switch -->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_biometric"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Biometric Lock (Fingerprint/Face)"
+            android:text="Biometric Lock"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:minHeight="48dp"
@@ -118,7 +117,6 @@
             app:trackTint="#4B5563"
             android:layout_marginBottom="12dp"/>
 
-        <!-- Shake Switch -->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_shake"
             android:layout_width="match_parent"
@@ -131,17 +129,28 @@
             app:trackTint="#4B5563"
             android:layout_marginBottom="12dp"/>
 
-        <!-- Notifications Switch (Now Real!) -->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_notifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Background Price Alerts"
+            android:text="Background Price Alerts (15m)"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:minHeight="48dp"
             app:thumbTint="#FBBF24"
-            app:trackTint="#4B5563"/>
+            app:trackTint="#4B5563"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- NEW: Logout Button -->
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:backgroundTint="#EF4444"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
 
         <!-- About Section -->
         <LinearLayout
@@ -149,8 +158,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="bottom|center_horizontal"
-            android:orientation="vertical"
-            android:layout_marginTop="32dp">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -160,7 +168,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Version 1.2.0 (Pro)"
+                android:text="Version 1.3.0"
                 android:textColor="#6B7280"
                 android:textSize="12sp"/>
         </LinearLayout>

@@ -13,10 +13,12 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.advancedmobilebitcointracker.databinding.FragmentSettingsBinding
+import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.TimeUnit
 
 class SettingsFragment : Fragment() {
@@ -26,7 +28,6 @@ class SettingsFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    // Permission launcher for Android 13+ notifications
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
@@ -52,22 +53,33 @@ class SettingsFragment : Fragment() {
 
         binding.btnSaveProfile.setOnClickListener { saveProfile() }
 
-        // Biometric Switch Logic
+        // --- NEW: LOGOUT LOGIC ---
+        binding.btnLogout.setOnClickListener {
+            // 1. Sign out from Firebase
+            FirebaseAuth.getInstance().signOut()
+
+            // 2. Clear local session data (Optional but good practice)
+            // sharedPreferences.edit().clear().apply()
+
+            // 3. Navigate back to Login
+            Toast.makeText(context, "Logged Out", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_settings_to_login)
+        }
+        // -------------------------
+
+        // Switch Logic
         binding.switchBiometric.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("biometric_enabled", isChecked).apply()
             val status = if (isChecked) "Enabled" else "Disabled"
             Toast.makeText(context, "App Lock $status", Toast.LENGTH_SHORT).show()
         }
 
-        // Shake Switch Logic
         binding.switchShake.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("shake_enabled", isChecked).apply()
         }
 
-        // Notifications Switch Logic (The Real Deal)
         binding.switchNotifications.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("notifications_enabled", isChecked).apply()
-
             if (isChecked) {
                 checkPermissionAndSchedule()
             } else {
@@ -95,10 +107,10 @@ class SettingsFragment : Fragment() {
 
         WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
             "BitcoinPriceAlert",
-            ExistingPeriodicWorkPolicy.UPDATE, // Updates the existing work if it exists
+            ExistingPeriodicWorkPolicy.UPDATE,
             workRequest
         )
-        Toast.makeText(context, "Background Alerts Enabled (Every 15m)", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Background Alerts Enabled", Toast.LENGTH_SHORT).show()
     }
 
     private fun cancelBackgroundWork() {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "267298842118",
+    "project_id": "bitcoin-tracker-f61df",
+    "storage_bucket": "bitcoin-tracker-f61df.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267298842118:android:4032cbe410b88c72eac587",
+        "android_client_info": {
+          "package_name": "com.example.advancedmobilebitcointracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzw5hImW2sG4WH1QUxIkL9xiysDjx-8vg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

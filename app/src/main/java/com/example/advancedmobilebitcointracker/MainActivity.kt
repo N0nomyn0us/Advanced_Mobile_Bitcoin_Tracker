@@ -29,7 +29,16 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.navView.setupWithNavController(navController)
 
-        // Check for Biometric Lock
+        // VISIBILITY LOGIC: Hide Bottom Bar on Login/Register screens
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.navigation_login || destination.id == R.id.navigation_register) {
+                binding.navView.visibility = View.GONE
+            } else {
+                binding.navView.visibility = View.VISIBLE
+            }
+        }
+
+        // Check for Biometric Lock (Security Feature)
         val sharedPrefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val isLockEnabled = sharedPrefs.getBoolean("biometric_enabled", false)
 
@@ -51,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                     super.onAuthenticationSucceeded(result)
                     // Show app content on success
                     binding.navHostFragment.visibility = View.VISIBLE
-                    binding.navView.visibility = View.VISIBLE
+                    // Note: The visibility listener above will handle showing the navView if needed
                     Toast.makeText(applicationContext, "Unlocked!", Toast.LENGTH_SHORT).show()
                 }
 
@@ -68,7 +77,6 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         // If no hardware, just let them in
                         binding.navHostFragment.visibility = View.VISIBLE
-                        binding.navView.visibility = View.VISIBLE
                     }
                 }
             })

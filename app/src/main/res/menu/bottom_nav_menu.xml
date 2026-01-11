@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
+        android:id="@+id/navigation_portfolio"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="Portfolio" />
+    <item
         android:id="@+id/navigation_search"
         android:icon="@drawable/ic_search"
         android:title="Search" />
